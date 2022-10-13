@@ -1,61 +1,29 @@
 import React from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
-
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
-import Button from "./components/button";
-
-import Shoes1 from "./assets/images/shoes1.png";
 
 import "./App.css";
-
-const stripePromise = loadStripe(
-  "pk_test_51LrWoaEQABU5G7hOQA1dkX45SSrOnrkgfj4Z3KPPVRM7mvm6VnvGeQqBy6oYeAsGC55IwDE3CZZ3BwPweoSaMV0S00u3Co8NQA"
-);
-
-const CheckoutForm = () => {
-  const stripe = useStripe();
-  const elements = useElements();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement),
-    });
-
-    if (!error) {
-      console.log(paymentMethod);
-    }
-  };
-
-  return (
-    <FormContainer onSubmit={handleSubmit}>
-      <PictureContaine>
-        <ShoesImage src={Shoes1} alt="Nike Dunk Low Clark Atlanta University" />
-      </PictureContaine>
-
-      <CardElementContainer>
-        <CardElement />
-      </CardElementContainer>
-      <Button />
-    </FormContainer>
-  );
-};
+import {
+  Home,
+  Producto,
+  Perfil,
+  Carrito,
+  Checkout,
+  Login,
+  NotFound,
+} from "./views";
 
 function App() {
   return (
-    <MainContainer>
-      <Elements stripe={stripePromise}>
-        <CheckoutForm />
-      </Elements>
-    </MainContainer>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="producto/:id" element={<Producto />} />
+      <Route path="perfil" element={<Perfil />} />
+      <Route path="carrito" element={<Carrito />} />
+      <Route path="checkout" element={<Checkout />} />
+      <Route path="login" element={<Login />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 
