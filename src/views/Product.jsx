@@ -1,7 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { useParams } from "react-router-dom";
+
+import getProductById from "../functions/getProductById";
+
+import theme from "../lib/themes";
+import Button from "../components/button";
+import { useCartContext } from "../context/cartContext";
 
 const Product = () => {
-  return <div>Product</div>;
+  const { id } = useParams();
+  const [productInfo, setProductInfo] = useState(null);
+  const { cart, setCart } = useCartContext();
+  useEffect(() => {
+    async function getProductInfo() {
+      const product = await getProductById(id);
+      setProductInfo(product);
+    }
+    getProductInfo();
+  }, [id]);
+
+  function addToCart() {
+    setCart([...cart, productInfo]);
+  }
+
+  return (
+    <PageBackGround>
+      <Container>
+        <Label>Product: {productInfo?.name}</Label>
+        <ItemImage src={productInfo?.images[0]} alt={productInfo?.name} />
+        <ButtonContainer>
+          <Button
+            backgroundColor={theme.color.lightBlue}
+            colorLabel={theme.color.white}
+            title="ADD TO CAR"
+            onClick={addToCart}
+          />
+          <Button
+            title="BUY NOW"
+            backgroundColor={theme.color.primary}
+            colorLabel={theme.color.white}
+          />
+        </ButtonContainer>
+      </Container>
+    </PageBackGround>
+  );
 };
 
 export default Product;
+
+const PageBackGround = styled.section`
+  width: 100%;
+  min-width: 288px;
+  min-height: 100vh;
+  padding-top: 16px;
+  background-color: ${theme.color.darkGray};
+`;
+
+const Container = styled.section`
+  width: 90%;
+  margin: 16px auto;
+  display: flex;
+  min-width: 288px;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: ${theme.color.white};
+`;
+
+const Label = styled.h1`
+  padding: 8px;
+  font-size: ${theme.fontSize.base};
+  font-weight: 500;
+  line-height: ${theme.fontSize.subtitle};
+  margin-bottom: 0;
+`;
+
+const ItemImage = styled.img`
+  border-radius: 6px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  padding: 16px;
+  justify-content: space-between;
+`;

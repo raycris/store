@@ -1,16 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../lib/themes";
 
 const ItemCard = ({ product }) => {
   return (
-    <Container>
-      <ItemImage src={product.images[0]} alt={product.name} />
-      <Label>{product.name}</Label>
-      <Price>
-        ${product.price.unit_amount / 100} {product.price.currency}
-      </Price>
-    </Container>
+    <Link to={`/product/${product.id}`}>
+      <Container>
+        <ItemImage src={product.images[0]} alt={product.name} />
+        <Label>{product.name}</Label>
+        <Price>
+          ${product.price.unit_amount / 100} {product.price.currency}
+        </Price>
+      </Container>
+    </Link>
   );
 };
 
