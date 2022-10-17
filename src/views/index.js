@@ -1,4 +1,4 @@
-export { default as Car} from "./Car";
+export { default as Cart} from "./Cart";
 export { default as Checkout } from "./Checkout";
 export { default as Home } from "./Home";
 export { default as NotFound } from "./NotFound";
