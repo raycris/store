@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
+import Button from "../components/button";
 import ItemCard from "../components/ItemCard";
+
+import theme from "../lib/themes";
+
 import getActiveProducts from "../functions/getActiveProducts";
+
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/credenciales";
 
 const Home = () => {
   const [products, setProducts] = useState(null);
@@ -13,8 +21,18 @@ const Home = () => {
     getProducts();
   }, []);
 
+  function logout() {
+    signOut(auth);
+  }
+
   return (
     <Container>
+      <Button
+        title="Logout"
+        backgroundColor={theme.color.primary}
+        colorLabel={theme.color.white}
+        onClick={logout}
+      />
       {products
         ? products.map((itemProduct) => (
             <li key={itemProduct.id}>

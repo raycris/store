@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import getProductById from "../functions/getProductById";
 
 import theme from "../lib/themes";
+
 import Button from "../components/button";
+
 import { useCartContext } from "../context/cartContext";
+import { useUserContext } from "../context/useContext";
 
 const Product = () => {
   const { id } = useParams();
   const [productInfo, setProductInfo] = useState(null);
   const { cart, setCart } = useCartContext();
+  const { user } = useUserContext();
   useEffect(() => {
     async function getProductInfo() {
       const product = await getProductById(id);
@@ -26,8 +30,20 @@ const Product = () => {
 
   return (
     <PageBackGround>
-      <Container>
-        <Label>Product: {productInfo?.name}</Label>
+      <Card>
+        <ButtonContainer>
+          <Label>Product: {productInfo?.name}</Label>
+          <Link
+            to="/cart"
+            style={{ background: `${theme.color.orage}`, borderRadius: "6px" }}
+          >
+            <Button
+              title="CART"
+              backgroundColor={theme.color.orage}
+              colorLabel={theme.color.white}
+            />
+          </Link>
+        </ButtonContainer>
         <ItemImage src={productInfo?.images[0]} alt={productInfo?.name} />
         <ButtonContainer>
           <Button
@@ -42,7 +58,7 @@ const Product = () => {
             colorLabel={theme.color.white}
           />
         </ButtonContainer>
-      </Container>
+      </Card>
     </PageBackGround>
   );
 };
@@ -57,7 +73,7 @@ const PageBackGround = styled.section`
   background-color: ${theme.color.darkGray};
 `;
 
-const Container = styled.section`
+const Card = styled.section`
   width: 90%;
   margin: 16px auto;
   display: flex;
@@ -85,5 +101,6 @@ const ItemImage = styled.img`
 const ButtonContainer = styled.div`
   display: flex;
   padding: 16px;
+  align-items: center;
   justify-content: space-between;
 `;
