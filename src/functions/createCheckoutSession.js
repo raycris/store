@@ -1,9 +1,10 @@
-import { addDoc, collection, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase/credenciales";
+import { addDoc, collection, doc, onSnapshot } from "firebase/firestore";
 
 async function createCheckoutSession(uid, cart) {
   const collectionRef = collection(db, `customers/${uid}/checkout_sessions`);
-  addDoc(collectionRef, {
+  // añadimos documento para indicar a stripe inteción de compra
+  const { id } = await addDoc(collectionRef, {
     mode: "payment",
     success_url: window.location.origin,
     cancel_url: window.location.origin,
@@ -15,6 +16,22 @@ async function createCheckoutSession(uid, cart) {
       };
     }),
   });
+
+// escuchamos los cambios para obtener la url de stripe
+const cancelaStreaming = onSnapshot(
+  doc(db, `customers/${uid}/checkout_sessions/${id}`),
+
+  (snapshot) => {
+    let url = snapshot.data().url;
+    if (url) {
+      cancelaStreaming();
+      window.location.href = url;
+    }
+  }
+);
 }
+
+
+
 
 export default createCheckoutSession;

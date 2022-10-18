@@ -22,6 +22,8 @@ function App() {
   const { user, setUser } = useUserContext();
   onAuthStateChanged(auth, (firebaseUser) => {
     firebaseUser ? setUser(firebaseUser) : setUser(null);
+    // if (firebaseUser) setUser(firebaseUser);
+    // if (!firebaseUser) setUser(null);
   });
   return (
     <Routes>
