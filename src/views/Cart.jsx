@@ -26,6 +26,7 @@ const Cart = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     loginEmail(email, password);
+    setIsModal(false)
   }
   return (
     <Container>
