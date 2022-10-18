@@ -19,7 +19,15 @@ const Cart = () => {
   const [isModal, setIsModal] = useState(false);
 
   function isAuthenticated() {
-    user ? createCheckoutSession(user.id, cart) : setIsModal(true);
+    // if (user) {
+    //   // funcion de comprar
+    //   createCheckoutSession(user.uid, cart);
+    // }
+    // if (!user) {
+    //   // mostrar modal
+    //   setIsModal(true);
+    // }
+    user ? createCheckoutSession(user.uid, cart) : setIsModal(true);
   }
 
   function login(e) {
@@ -28,7 +36,7 @@ const Cart = () => {
     const password = e.target.password.value;
     loginEmail(email, password);
     setIsModal(false);
-    createCheckoutSession(user.id, cart);
+    createCheckoutSession(user.uid, cart);
   }
   return (
     <Container>
@@ -47,10 +55,10 @@ const Cart = () => {
             </ModalForm>
           </Card>
         </BlurBackground>
-      ) : null}
+      ) : <></>}
       <h2>You cart</h2>
       {cart.map((item) => (
-        <p key={item?.id}>{item.name}</p>
+        <p key={item?.name}>{item.name}</p>
       ))}
       <Button
         title="BUY"
