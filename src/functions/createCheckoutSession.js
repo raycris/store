@@ -16,3 +16,5 @@ async function createCheckoutSession(uid, cart) {
     }),
   });
 }
+
+export default createCheckoutSession;
