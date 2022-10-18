@@ -11,6 +11,7 @@ import Button from "../components/button";
 import theme from "../lib/themes";
 
 import loginEmail from "../functions/loginEmail";
+import createCheckoutSession from "../functions/createCheckoutSession";
 
 const Cart = () => {
   const { cart } = useCartContext();
@@ -18,7 +19,7 @@ const Cart = () => {
   const [isModal, setIsModal] = useState(false);
 
   function isAuthenticated() {
-    user ? console.log("tamo aqui") : setIsModal(true);
+    user ? createCheckoutSession(user.id, cart) : setIsModal(true);
   }
 
   function login(e) {
@@ -26,6 +27,8 @@ const Cart = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     loginEmail(email, password);
+    setIsModal(false);
+    createCheckoutSession(user.id, cart);
   }
   return (
     <Container>
