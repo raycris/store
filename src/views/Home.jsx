@@ -3,10 +3,14 @@ import styled from "styled-components";
 
 import Button from "../components/button";
 import ItemCard from "../components/ItemCard";
+import Header from "../components/header";
+
 
 import theme from "../lib/themes";
 
 import getActiveProducts from "../functions/getActiveProducts";
+
+import Hero from "../assets/images/inicio.jpg"
 
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/credenciales";
@@ -21,19 +25,17 @@ const Home = () => {
     getProducts();
   }, []);
 
-  function logout() {
-    signOut(auth);
-  }
-
+  // function logout() {
+  //   signOut(auth);
+  // }
+  
   return (
-    <>
-      <Button
-        title="Logout"
-        backgroundColor={theme.color.primary}
-        colorLabel={theme.color.white}
-        onClick={logout}
-      />
     <Container>
+      <Header />
+      <HeroContainer>
+        <HeroImage src={Hero} alt="" />
+      </HeroContainer>
+    <ListContainer>
       {products
         ? products.map((itemProduct) => (
             <li key={itemProduct.id}>
@@ -41,14 +43,19 @@ const Home = () => {
             </li>
           ))
         : null}
+    </ListContainer>
     </Container>
-    </>
   );
 };
 
 export default Home;
 
-const Container = styled.ul`
+const Container = styled.div`
+display: flex;
+flex-direction: column;
+`
+
+const ListContainer = styled.ul`
   padding: 0;
   list-style: none;
   justify-content: center;
@@ -56,6 +63,16 @@ const Container = styled.ul`
   
   @media (min-width: 1024px) {
    display: grid;
-   grid-template-columns: repeat(2, 1fr);
+   grid-template-columns: repeat(3, 1fr);
   }
 `;
+
+const HeroContainer = styled.picture`
+ width: 100%;
+`;
+
+const HeroImage = styled.img`
+width: 100%;
+height: auto;
+background-size: cover;
+`
