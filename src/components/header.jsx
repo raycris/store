@@ -19,10 +19,19 @@ function Header() {
   return (
     <Conatiner>
       <SearchLabelContainer>
-        <Icon src={MagnifyingGlassSVG} style={{ marginRight: 8 }} />
+        <Icon
+          src={MagnifyingGlassSVG}
+          style={{ marginRight: 8 }}
+          alt="magnifying glass icon"
+        />
         <SearchBar placeholder="Search for brand"></SearchBar>
       </SearchLabelContainer>
-      <Icon src={LogoutSVG} onClick={logout} style={{ marginRight: 8 }} />
+      <Icon
+        src={LogoutSVG}
+        onClick={logout}
+        style={{ marginRight: 8, cursor: "pointer" }}
+        alt="Logout icon"
+      />
     </Conatiner>
   );
 }
@@ -32,8 +41,8 @@ export default Header;
 const Conatiner = styled.section`
   width: 100%;
   height: 74px;
-  min-width: 288px;
   display: flex;
+  min-width: 288px;
   align-items: center;
   justify-content: space-between;
   background-color: ${theme.color.lightBlue};
@@ -43,9 +52,9 @@ const SearchLabelContainer = styled.span`
   width: 80%;
   height: 34px;
   cursor: pointer;
-  display: flex;
   margin: 0 10px;
   border: 1px solid ${theme.color.primary};
+  display: flex;
   align-items: center;
   border-radius: 8px;
   justify-content: space-evenly;
