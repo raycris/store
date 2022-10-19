@@ -36,7 +36,7 @@ const Conatiner = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: beige;
+  background-color: ${theme.color.lightBlue};
 `;
 
 const SearchLabelContainer = styled.span`
