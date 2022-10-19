@@ -8,6 +8,8 @@ import theme from "../lib/themes";
 
 import Button from "../components/button";
 
+import CartSVG from "../assets/icons/cart.svg";
+
 import { useCartContext } from "../context/cartContext";
 import { useUserContext } from "../context/userContext";
 
@@ -33,15 +35,8 @@ const Product = () => {
       <Card>
         <ButtonContainer>
           <Label>Product: {productInfo?.name}</Label>
-          <Link
-            to="/cart"
-            style={{ background: `${theme.color.orage}`, borderRadius: "6px" }}
-          >
-            <Button
-              title="CART"
-              backgroundColor={theme.color.orage}
-              colorLabel={theme.color.white}
-            />
+          <Link to="/cart">
+            <Icon src={CartSVG} alt="cart icon" />
           </Link>
         </ButtonContainer>
         <ItemImage src={productInfo?.images[0]} alt={productInfo?.name} />
@@ -70,7 +65,7 @@ const PageBackGround = styled.section`
   min-width: 288px;
   min-height: 100vh;
   padding-top: 16px;
-  background-color: ${theme.color.darkGray};
+  background-color: ${theme.color.gray};
 `;
 
 const Card = styled.section`
@@ -103,4 +98,9 @@ const ButtonContainer = styled.div`
   padding: 16px;
   align-items: center;
   justify-content: space-between;
+`;
+
+const Icon = styled.img`
+  width: 26px;
+  height: 26px;
 `;
