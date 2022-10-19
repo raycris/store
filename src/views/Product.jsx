@@ -33,12 +33,12 @@ const Product = () => {
   return (
     <PageBackGround>
       <Card>
-        <ButtonContainer>
+        <LabelContainer>
           <Label>Product: {productInfo?.name}</Label>
           <Link to="/cart">
             <Icon src={CartSVG} alt="cart icon" />
           </Link>
-        </ButtonContainer>
+        </LabelContainer>
         <ItemImage src={productInfo?.images[0]} alt={productInfo?.name} />
         <ButtonContainer>
           <Button
@@ -65,7 +65,6 @@ const PageBackGround = styled.section`
   min-width: 288px;
   min-height: 100vh;
   padding-top: 16px;
-  background-color: ${theme.color.gray};
 `;
 
 const Card = styled.section`
@@ -73,12 +72,18 @@ const Card = styled.section`
   margin: 16px auto;
   display: flex;
   min-width: 288px;
-  max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
   border-radius: 6px;
   flex-direction: column;
   justify-content: center;
   background-color: ${theme.color.white};
+
+  @media (min-width: 768px) {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    align-content: space-around;
+  }
 `;
 
 const Label = styled.h1`
@@ -91,6 +96,10 @@ const Label = styled.h1`
 
 const ItemImage = styled.img`
   border-radius: 6px;
+  @media (min-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -98,9 +107,29 @@ const ButtonContainer = styled.div`
   padding: 16px;
   align-items: center;
   justify-content: space-between;
+  
+  @media (min-width: 768px) {
+    width:100%;
+    justify-content:center;
+    padding: 10px 0;
+    align-items: space-between;
+    flex-direction: column;
+  }
+`;
+const LabelContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  justify-content: space-between;
+  @media (min-width: 768px) {
+    align-items: flex-start;
+  }
 `;
 
 const Icon = styled.img`
   width: 26px;
   height: 26px;
+  @media (min-width: 768px) {
+    margin-top: 20px;
+  }
 `;

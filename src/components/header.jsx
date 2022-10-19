@@ -60,6 +60,10 @@ const SearchLabelContainer = styled.span`
   &:hover {
     background-color: ${theme.color.hoverGreen};
   }
+
+  @media (min-width: 768px) {
+    width: 350px;
+  }
 `;
 
 const Icon = styled.img`

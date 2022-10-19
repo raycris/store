@@ -20,6 +20,11 @@ const Container = styled.button`
   font-weight: bold;
   border-radius: 6px;
   background-color: ${(props) => `${props.backgroundColor}`};
+
+  @media (min-width: 768px) {
+    width: 80%;
+    margin: 8px 0;
+  }
 `;
 
 const Label = styled.h2`
