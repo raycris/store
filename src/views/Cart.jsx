@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useCartContext } from "../context/cartContext";
-import { useUserContext } from "../context/useContext";
+import { useUserContext } from "../context/userContext";
 
 import styled from "styled-components";
 
@@ -19,14 +19,6 @@ const Cart = () => {
   const [isModal, setIsModal] = useState(false);
 
   function isAuthenticated() {
-    // if (user) {
-    //   // funcion de comprar
-    //   createCheckoutSession(user.uid, cart);
-    // }
-    // if (!user) {
-    //   // mostrar modal
-    //   setIsModal(true);
-    // }
     user ? createCheckoutSession(user.uid, cart) : setIsModal(true);
   }
 

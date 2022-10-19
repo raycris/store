@@ -26,13 +26,14 @@ const Home = () => {
   }
 
   return (
-    <Container>
+    <>
       <Button
         title="Logout"
         backgroundColor={theme.color.primary}
         colorLabel={theme.color.white}
         onClick={logout}
       />
+    <Container>
       {products
         ? products.map((itemProduct) => (
             <li key={itemProduct.id}>
@@ -41,6 +42,7 @@ const Home = () => {
           ))
         : null}
     </Container>
+    </>
   );
 };
 
@@ -50,4 +52,10 @@ const Container = styled.ul`
   padding: 0;
   list-style: none;
   justify-content: center;
+
+  
+  @media (min-width: 1024px) {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+  }
 `;
