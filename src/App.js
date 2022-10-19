@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 
-import { useUserContext } from "./context/useContext";
+import { useUserContext } from "./context/userContext";
 
 import { auth } from "./firebase/credenciales";
 import { onAuthStateChanged } from "firebase/auth";
@@ -22,8 +22,6 @@ function App() {
   const { user, setUser } = useUserContext();
   onAuthStateChanged(auth, (firebaseUser) => {
     firebaseUser ? setUser(firebaseUser) : setUser(null);
-    // if (firebaseUser) setUser(firebaseUser);
-    // if (!firebaseUser) setUser(null);
   });
   return (
     <Routes>

@@ -4,8 +4,8 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
-import { UserContextProvider } from "./context/useContext";
 import { CartContextProvider } from "./context/cartContext";
+import { UserContextProvider } from "./context/userContext";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(

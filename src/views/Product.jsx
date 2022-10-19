@@ -9,7 +9,7 @@ import theme from "../lib/themes";
 import Button from "../components/button";
 
 import { useCartContext } from "../context/cartContext";
-import { useUserContext } from "../context/useContext";
+import { useUserContext } from "../context/userContext";
 
 const Product = () => {
   const { id } = useParams();
