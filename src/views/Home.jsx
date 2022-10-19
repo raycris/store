@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import Button from "../components/button";
 import ItemCard from "../components/ItemCard";
-import Header from "../components/header";
 
-import theme from "../lib/themes";
 
 import getActiveProducts from "../functions/getActiveProducts";
 
@@ -13,7 +10,6 @@ import Hero from "../assets/images/inicio.jpg";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/credenciales";
-import Footer from "../components/footer";
 
 const Home = () => {
   const [products, setProducts] = useState(null);
@@ -31,7 +27,6 @@ const Home = () => {
 
   return (
     <Container>
-      <Header />
       <HeroContainer>
         <HeroImage src={Hero} alt="" />
       </HeroContainer>
@@ -44,7 +39,6 @@ const Home = () => {
             ))
           : null}
       </ListContainer>
-      <Footer />
     </Container>
   );
 };

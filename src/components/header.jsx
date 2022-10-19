@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import theme from "../lib/themes";
-
-import Button from "./button";
 
 import MagnifyingGlassSVG from "../assets/icons/magnifying-glass.svg";
 import LogoutSVG from "../assets/icons/logout.svg";
