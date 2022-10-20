@@ -49,9 +49,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   @media (min-width: 768px) {
+    gap: 10px;
     align-items: center;
     justify-content: space-around;
-    gap: 10px;
   }
 `;
 
@@ -61,14 +61,16 @@ const ListContainer = styled.ul`
   justify-content: center;
 
   @media (min-width: 768px) {
+    gap: 10px;
     display: grid;
-    /* align-items: center; */
     grid-template-columns: repeat(2, 1fr);
   }
 
   @media (min-width: 1024px) {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+  @media (min-width: 1440px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 
@@ -78,7 +80,7 @@ const HeroContainer = styled.picture`
 
 const HeroImage = styled.img`
   width: 100%;
-  min-width: 288px;
   height: auto;
+  min-width: 288px;
   background-size: cover;
 `;
