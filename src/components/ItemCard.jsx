@@ -37,32 +37,38 @@ const Container = styled.section`
   justify-content: center;
 
   @media (min-width: 768px) {
-    margin: 10px;
     width: 288px;
     height: 350px;
+    margin: 10px;
     justify-content: space-around;
   }
 `;
 
 const ItemImage = styled.img`
+  inset: 0;
   width: 100%;
   height: auto;
   max-width: 400px;
+  object-fit: cover;
+  transition: transform 0.75s;
   border-radius: 6px;
+
+  &:hover {
+    transform: scale(1.15);
+  }
 `;
 
 const InfoCOntainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* background-color: red; */
 `;
 
 const Label = styled.h3`
+  margin: 0;
   padding: 8px;
   font-size: ${theme.fontSize.base};
   font-weight: 500;
   line-height: ${theme.fontSize.subtitle};
-  margin: 0;
 `;
 
 const Price = styled.p`
