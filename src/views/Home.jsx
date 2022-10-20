@@ -48,12 +48,23 @@ export default Home;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  @media (min-width: 768px) {
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+  }
 `;
 
 const ListContainer = styled.ul`
   padding: 0;
   list-style: none;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    display: grid;
+    /* align-items: center; */
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (min-width: 1024px) {
     display: grid;
@@ -67,6 +78,7 @@ const HeroContainer = styled.picture`
 
 const HeroImage = styled.img`
   width: 100%;
+  min-width: 288px;
   height: auto;
   background-size: cover;
 `;
