@@ -33,12 +33,15 @@ const Product = () => {
   return (
     <PageBackGround>
       <Card>
-        <LabelContainer>
-          <Label>Product: {productInfo?.name}</Label>
-          <Link to="/cart">
-            <Icon src={CartSVG} alt="cart icon" />
-          </Link>
-        </LabelContainer>
+        <TextContainer>
+          <LabelContainer>
+            <Label>{productInfo?.name}</Label>
+            <Link to="/cart">
+              <Icon src={CartSVG} alt="cart icon" />
+            </Link>
+          </LabelContainer>
+          <Description>{productInfo?.description}</Description>
+        </TextContainer>
         <ItemImage src={productInfo?.images[0]} alt={productInfo?.name} />
         <ButtonContainer>
           <Button
@@ -79,10 +82,10 @@ const Card = styled.section`
   background-color: ${theme.color.white};
 
   @media (min-width: 768px) {
-    display:grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: space-between;
+    display: grid;
     align-content: space-around;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
@@ -92,6 +95,21 @@ const Label = styled.h1`
   font-weight: 500;
   line-height: ${theme.fontSize.subtitle};
   margin-bottom: 0;
+`;
+
+const Description = styled.p`
+  color: ${theme.color.black};
+  display: none;
+  font-size: ${theme.fontSize.normal};
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
 `;
 
 const ItemImage = styled.img`
@@ -107,19 +125,19 @@ const ButtonContainer = styled.div`
   padding: 16px;
   align-items: center;
   justify-content: space-between;
-  
+
   @media (min-width: 768px) {
-    width:100%;
-    justify-content:center;
+    width: 100%;
     padding: 10px 0;
     align-items: space-between;
     flex-direction: column;
+    justify-content: center;
   }
 `;
 const LabelContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 16px;
+
   justify-content: space-between;
   @media (min-width: 768px) {
     align-items: flex-start;

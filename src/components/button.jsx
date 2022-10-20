@@ -17,6 +17,7 @@ const Container = styled.button`
   width: 48%;
   height: 42px;
   border: none;
+  cursor: pointer;
   font-weight: bold;
   border-radius: 6px;
   background-color: ${(props) => `${props.backgroundColor}`};
