@@ -33,12 +33,15 @@ const Product = () => {
   return (
     <PageBackGround>
       <Card>
-        <ButtonContainer>
-          <Label>Product: {productInfo?.name}</Label>
-          <Link to="/cart">
-            <Icon src={CartSVG} alt="cart icon" />
-          </Link>
-        </ButtonContainer>
+        <TextContainer>
+          <LabelContainer>
+            <Label>{productInfo?.name}</Label>
+            <Link to="/cart">
+              <Icon src={CartSVG} alt="cart icon" />
+            </Link>
+          </LabelContainer>
+          <Description>{productInfo?.description}</Description>
+        </TextContainer>
         <ItemImage src={productInfo?.images[0]} alt={productInfo?.name} />
         <ButtonContainer>
           <Button
@@ -65,7 +68,6 @@ const PageBackGround = styled.section`
   min-width: 288px;
   min-height: 100vh;
   padding-top: 16px;
-  background-color: ${theme.color.gray};
 `;
 
 const Card = styled.section`
@@ -73,12 +75,18 @@ const Card = styled.section`
   margin: 16px auto;
   display: flex;
   min-width: 288px;
-  max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
   border-radius: 6px;
   flex-direction: column;
   justify-content: center;
   background-color: ${theme.color.white};
+
+  @media (min-width: 768px) {
+    display: grid;
+    align-content: space-around;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const Label = styled.h1`
@@ -89,8 +97,27 @@ const Label = styled.h1`
   margin-bottom: 0;
 `;
 
+const Description = styled.p`
+  color: ${theme.color.black};
+  display: none;
+  font-size: ${theme.fontSize.normal};
+  @media (min-width: 768px) {
+    display: flex;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+`;
+
 const ItemImage = styled.img`
   border-radius: 6px;
+  @media (min-width: 768px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -98,9 +125,29 @@ const ButtonContainer = styled.div`
   padding: 16px;
   align-items: center;
   justify-content: space-between;
+
+  @media (min-width: 768px) {
+    width: 100%;
+    padding: 10px 0;
+    align-items: space-between;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+const LabelContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+  @media (min-width: 768px) {
+    align-items: flex-start;
+  }
 `;
 
 const Icon = styled.img`
   width: 26px;
   height: 26px;
+  @media (min-width: 768px) {
+    margin-top: 20px;
+  }
 `;
