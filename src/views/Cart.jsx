@@ -11,11 +11,13 @@ import theme from "../lib/themes";
 import createCheckoutSession from "../functions/createCheckoutSession";
 
 import Modal from "../components/modal";
+import Header from "../components/header";
 
 const Cart = () => {
   const { cart } = useCartContext();
   const { user } = useUserContext();
   const [isModal, setIsModal] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   function isAuthenticated() {
     user ? createCheckoutSession(user.uid, cart) : setIsModal(true);
@@ -23,6 +25,7 @@ const Cart = () => {
 
   return (
     <Container>
+      <Header setSearchValue={setSearchValue} searchValue={searchValue} />
       {isModal ? (
         <Modal setIsModal={setIsModal} cart={cart} user={user} />
       ) : (

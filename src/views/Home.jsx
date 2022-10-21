@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import Header from "../components/header";
 import ItemCard from "../components/ItemCard";
 
 import getActiveProducts from "../functions/getActiveProducts";
 
 import Hero from "../assets/images/inicio.jpg";
-import Header from "../components/header";
+
 
 const Home = () => {
   const [products, setProducts] = useState(null);
   const [searchValue, setSearchValue] = useState("");
-  // console.log(searchedItems);
   let searchedItems = [];
+
   useEffect(() => {
     async function getProducts() {
       const products = await getActiveProducts();
@@ -24,23 +25,17 @@ const Home = () => {
   if (!searchValue.length >= 1) {
     searchedItems = products;
   } else {
-    searchedItems = products.filter((todo) => {
-      const todoText = todo.name.toLowerCase();
+    searchedItems = products.filter((product) => {
+      const productName = product.name.toLowerCase();
       const searchText = searchValue.toLowerCase();
-      return todoText.includes(searchText);
+      return productName.includes(searchText);
     });
   }
 
-  console.log(searchedItems);
-  // const onSearchValueChange = (event) => {
-  //   console.log(event.target.value);
-  //   setSearchValue(event.target.value);
-  // };
-
   return (
     <Container>
-      <Header setSearchValue={setSearchValue} searchValue={searchValue} />
       <HeroContainer>
+        <Header setSearchValue={setSearchValue} searchValue={searchValue} />
         <HeroImage src={Hero} alt="hero" />
       </HeroContainer>
       <ListContainer>
