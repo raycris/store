@@ -9,20 +9,32 @@ import LogoutSVG from "../assets/icons/logout.svg";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/credenciales";
 
-function Header() {
+
+
+function Header( {searchValue, setSearchValue}) {
+
   function logout() {
     signOut(auth);
   }
+
+  const onSearchValueChange = (event) => {
+    console.log(event.target.value);
+    setSearchValue(event.target.value);
+  };
 
   return (
     <Conatiner>
       <SearchLabelContainer>
         <Icon
           src={MagnifyingGlassSVG}
-          style={{ marginRight: 8 }}
+          style={{ marginRight: 8, marginLeft: 4 }}
           alt="magnifying glass icon"
         />
-        <SearchBar placeholder="Search for brand"></SearchBar>
+        <SearchBar
+          placeholder="Search for brand"
+          onChange={onSearchValueChange}
+          value={searchValue}
+        ></SearchBar>
       </SearchLabelContainer>
       <Icon
         src={LogoutSVG}

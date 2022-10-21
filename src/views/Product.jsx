@@ -12,12 +12,14 @@ import CartSVG from "../assets/icons/cart.svg";
 
 import { useCartContext } from "../context/cartContext";
 import { useUserContext } from "../context/userContext";
+import Header from "../components/header";
 
 const Product = () => {
   const { id } = useParams();
   const [productInfo, setProductInfo] = useState(null);
   const { cart, setCart } = useCartContext();
   const { user } = useUserContext();
+  
   useEffect(() => {
     async function getProductInfo() {
       const product = await getProductById(id);
@@ -32,6 +34,7 @@ const Product = () => {
 
   return (
     <PageBackGround>
+      <Header/>
       <HeaderContainer>
         <Link
           to="/"
@@ -40,6 +43,7 @@ const Product = () => {
             cursor: "pointer",
             padding: 14,
             fontSize: `${theme.fontSize.small}`,
+            marginTop:4,
             borderRadius: 6,
             textDecoration: "none",
             backgroundColor: `${theme.color.primary}`,
@@ -78,7 +82,6 @@ const PageBackGround = styled.section`
   width: 100%;
   min-width: 288px;
   min-height: 100vh;
-  padding-top: 16px;
 `;
 
 const Card = styled.section`
