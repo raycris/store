@@ -32,6 +32,22 @@ const Product = () => {
 
   return (
     <PageBackGround>
+      <HeaderContainer>
+        <Link
+          to="/"
+          style={{
+            color: `${theme.color.white}`,
+            cursor: "pointer",
+            padding: 14,
+            fontSize: `${theme.fontSize.small}`,
+            borderRadius: 6,
+            textDecoration: "none",
+            backgroundColor: `${theme.color.primary}`,
+          }}
+        >
+          Back to home
+        </Link>
+      </HeaderContainer>
       <Card>
         <TextContainer>
           <LabelContainer>
@@ -49,11 +65,6 @@ const Product = () => {
             colorLabel={theme.color.white}
             title="ADD TO CAR"
             onClick={addToCart}
-          />
-          <Button
-            title="BUY NOW"
-            backgroundColor={theme.color.primary}
-            colorLabel={theme.color.white}
           />
         </ButtonContainer>
       </Card>
@@ -150,4 +161,12 @@ const Icon = styled.img`
   @media (min-width: 768px) {
     margin-top: 20px;
   }
+`;
+
+const HeaderContainer = styled.div`
+  display: flex;
+  padding: 0 20px;
+  min-width: 288px;
+  align-items: center;
+  justify-content: flex-end;
 `;
