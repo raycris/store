@@ -6,7 +6,6 @@ import { useUserContext } from "../context/userContext";
 
 import styled from "styled-components";
 
-import Button from "../components/button";
 
 import theme from "../lib/themes";
 
@@ -47,18 +46,37 @@ const Cart = () => {
             </ModalForm>
           </Card>
         </BlurBackground>
-      ) : <></>}
-      <h2>You cart</h2>
+      ) : (
+        <div style={{ backgroundColor: "blue" }}></div>
+      )}
+      <HeaderContainer>
+        <Label>Order preview</Label>
+        <Link
+          to="/"
+          style={{
+            color: `${theme.color.white}`,
+            padding: 14,
+            fontSize: `${theme.fontSize.small}`,
+            borderRadius: 6,
+            cursor: "pointer",
+            textDecoration: "none",
+            backgroundColor: `${theme.color.primary}`,
+          }}
+        >
+          Back to home
+        </Link>
+      </HeaderContainer>
       {cart.map((item) => (
-        <p key={item?.name}>{item.name}</p>
+        <CartContainer key={item?.name}>
+          <ProductImage src={item.images} alt={item.images} />
+          <TextLabel>{item.name}</TextLabel>
+        </CartContainer>
       ))}
-      <Button
-        title="BUY"
-        backgroundColor={theme.color.primary}
-        colorLabel={theme.color.white}
-        onClick={isAuthenticated}
-      />
-      <Link to="/">Back to home</Link>
+      <ButtonContainer>
+        <Button onClick={isAuthenticated}>
+          <ButtonLabel>Checkout</ButtonLabel>
+        </Button>
+      </ButtonContainer>
     </Container>
   );
 };
@@ -107,4 +125,82 @@ const ModalForm = styled.form`
 
 const Input = styled.input`
   margin: 10px 0;
+`;
+
+const CartContainer = styled.section`
+  width: 90%;
+  margin: 16px auto;
+  display: flex;
+  cursor: pointer;
+  min-width: 288px;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+  border-radius: 6px;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    height: 176px;
+    padding: 0 10px;
+    max-width: 900px;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+`;
+
+const Label = styled.h2`
+  color: ${theme.color.primary};
+  font-size: ${theme.fontSize.subtitle};
+`;
+const TextLabel = styled.h2`
+  color: ${theme.color.primary};
+  font-size: ${theme.fontSize.normal};
+  text-align: center;
+`;
+const HeaderContainer = styled.div`
+  display: flex;
+  padding: 0 20px;
+  min-width: 288px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  min-width: 288px;
+  margin-bottom: 10px;
+  justify-content: center;
+`;
+
+const Button = styled.button`
+  width: 48%;
+  height: 42px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: ${theme.color.orage};
+
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+`;
+
+const ButtonLabel = styled.h2`
+  color: ${theme.color.white};
+  font-size: ${theme.fontSize.small};
+  text-align: center;
+  font-weight: bold;
+`;
+
+const ProductImage = styled.img`
+  width: 90%;
+  min-width: 288px;
+  object-fit: cover;
+
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 176px;
+  }
 `;
