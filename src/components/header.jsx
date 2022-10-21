@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import theme from "../lib/themes";
@@ -8,21 +8,61 @@ import LogoutSVG from "../assets/icons/logout.svg";
 
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/credenciales";
+import { getActiveProducts } from "../functions";
+import { Home } from "../views";
 
-function Header() {
+
+
+function Header( {searchValue, setSearchValue}) {
+  // const [searchValue, setSearchValue] = useState("");
+  const [products, setProducts] = useState(null);
+
+  // let searchedItems = [];
+
+  // useEffect(() => {
+  //   async function getProducts() {
+  //     const products = await getActiveProducts();
+  //     setProducts(products);
+  //   }
+  //   getProducts();
+  // }, []);
+
+
+  // if (!searchValue.length >= 1) {
+  //   searchedItems = products;
+  // } else {
+  //   searchedItems = products.filter((todo) => {
+  //     const todoText = todo.name.toLowerCase();
+  //     const searchText = searchValue.toLowerCase();
+  //     return todoText.includes(searchText);
+  //   });
+  // }
+  // console.log(products);
+  
+  // console.log(searchedItems);
+
   function logout() {
     signOut(auth);
   }
+
+  const onSearchValueChange = (event) => {
+    console.log(event.target.value);
+    setSearchValue(event.target.value);
+  };
 
   return (
     <Conatiner>
       <SearchLabelContainer>
         <Icon
           src={MagnifyingGlassSVG}
-          style={{ marginRight: 8 }}
+          style={{ marginRight: 8, marginLeft: 4 }}
           alt="magnifying glass icon"
         />
-        <SearchBar placeholder="Search for brand"></SearchBar>
+        <SearchBar
+          placeholder="Search for brand"
+          onChange={onSearchValueChange}
+          value={searchValue}
+        ></SearchBar>
       </SearchLabelContainer>
       <Icon
         src={LogoutSVG}

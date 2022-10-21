@@ -26,7 +26,7 @@ const Cart = () => {
       {isModal ? (
         <Modal setIsModal={setIsModal} cart={cart} user={user} />
       ) : (
-        <div style={{ backgroundColor: "blue" }}></div>
+        <></>
       )}
       <HeaderContainer>
         <Label>Order preview</Label>
@@ -47,7 +47,7 @@ const Cart = () => {
       </HeaderContainer>
       {cart.map((item) => (
         <CartContainer key={item?.name}>
-          <ProductImage src={item.images} alt={item.images} />
+          <ProductImage src={item.images} alt={item?.name} />
           <TextLabel>{item.name}</TextLabel>
         </CartContainer>
       ))}

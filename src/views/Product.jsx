@@ -18,6 +18,7 @@ const Product = () => {
   const [productInfo, setProductInfo] = useState(null);
   const { cart, setCart } = useCartContext();
   const { user } = useUserContext();
+  
   useEffect(() => {
     async function getProductInfo() {
       const product = await getProductById(id);

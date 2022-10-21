@@ -24,7 +24,7 @@ root.render(
     <CartContextProvider>
       <BrowserRouter>
         <Container>
-          <Header />
+          {/* <Header /> */}
           <App />
           <Footer />
         </Container>
