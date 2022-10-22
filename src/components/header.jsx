@@ -9,10 +9,7 @@ import LogoutSVG from "../assets/icons/logout.svg";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/credenciales";
 
-
-
-function Header( {searchValue, setSearchValue}) {
-
+function Header({ searchValue, setSearchValue }) {
   function logout() {
     signOut(auth);
   }
@@ -31,6 +28,7 @@ function Header( {searchValue, setSearchValue}) {
           alt="magnifying glass icon"
         />
         <SearchBar
+          type="search"
           placeholder="Search for brand"
           onChange={onSearchValueChange}
           value={searchValue}
