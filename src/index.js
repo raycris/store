@@ -7,8 +7,7 @@ import App from "./App";
 import { CartContextProvider } from "./context/cartContext";
 import { UserContextProvider } from "./context/userContext";
 
-import Header from "./components/header";
-import Footer from "./components/footer";
+
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -24,9 +23,7 @@ root.render(
     <CartContextProvider>
       <BrowserRouter>
         <Container>
-          {/* <Header /> */}
           <App />
-          <Footer />
         </Container>
       </BrowserRouter>
     </CartContextProvider>

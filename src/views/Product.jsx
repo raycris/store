@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 
 import getProductById from "../functions/getProductById";
@@ -11,14 +10,13 @@ import Button from "../components/button";
 import CartSVG from "../assets/icons/cart.svg";
 
 import { useCartContext } from "../context/cartContext";
-import { useUserContext } from "../context/userContext";
-import Header from "../components/header";
+
+import styled from "styled-components";
 
 const Product = () => {
   const { id } = useParams();
   const [productInfo, setProductInfo] = useState(null);
   const { cart, setCart } = useCartContext();
-  const { user } = useUserContext();
   
   useEffect(() => {
     async function getProductInfo() {
@@ -34,7 +32,6 @@ const Product = () => {
 
   return (
     <PageBackGround>
-      <Header/>
       <HeaderContainer>
         <Link
           to="/"
