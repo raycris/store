@@ -1,48 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import Header from "../components/header";
 import ItemCard from "../components/ItemCard";
-
-import getActiveProducts from "../functions/getActiveProducts";
 
 import Hero from "../assets/images/inicio.jpg";
 
-
-const Home = () => {
-  const [products, setProducts] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
-  let searchedItems = [];
-
-  useEffect(() => {
-    async function getProducts() {
-      const products = await getActiveProducts();
-      setProducts(products);
-    }
-    getProducts();
-  }, []);
-
-  if (!searchValue.length >= 1) {
-    searchedItems = products;
-  } else {
-    searchedItems = products.filter((product) => {
-      const productName = product.name.toLowerCase();
-      const searchText = searchValue.toLowerCase();
-      return productName.includes(searchText);
-    });
-  }
-
+const Home = ({ searchedItems }) => {
   return (
     <Container>
       <HeroContainer>
-        <Header setSearchValue={setSearchValue} searchValue={searchValue} />
         <HeroImage src={Hero} alt="hero" />
       </HeroContainer>
       <ListContainer>
         {searchedItems
-          ? searchedItems.map((itemProduct) => (
-              <li key={itemProduct.id}>
-                <ItemCard product={itemProduct} />
+          ? searchedItems.map((item) => (
+              <li key={item.id}>
+                <ItemCard product={item} />
               </li>
             ))
           : null}
